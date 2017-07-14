@@ -4,67 +4,16 @@ import * as redux from 'redux';
 //import { Provider, connect } from 'react-redux';
 
 // Comp: AddTodo
-class AddTodo extends PureComponent {
-    constructor(props) {
-        super(props);
-        this.onAddTodo = this.onAddTodo.bind(this);
-    }
 
-    onAddTodo(e) {
-        e.preventDefault();
-        //console.log(this.eleText);
-        let data = {
-            'text': this.eleText.value.trim()
-        };
-        if (data.text) {
-            this.props.onAddTodo(data);
-        }
-    }
-
-    render() {
-        let comp = <form onSubmit={e => this.onAddTodo(e)}>
-            <input 
-                className="form-control input-sm"
-                ref={ele => this.eleText = ele}
-            />
-        </form>;
-        return comp;
-    }
-}
 //AddTodo = connect()(AddTodo);
 // #end
 
 // Todo Item
-class TodoItem extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
 
-    render() {
-        let item = this.props;
-        let text = !item.done ? item.text : <i style={{textDecoration: 'line-through'}}>{item.text}</i>;
-        let comp = <li onClick={item.onClick}>{text}</li>;
-        return comp;
-    }
-}
 // #end
 
 // Comp: ListTodo
-class ListTodo extends PureComponent {
-    constructor(props) {
-        super(props);
-    }
 
-    render() {
-        let comp = <div>
-            <h2>Todo List:</h2>
-            <ul>{this.props.todos.map((item, index) => {
-                return <TodoItem key={index} onClick={e => this.props.onToggleTodo(index)} {...item} />
-            })}</ul>
-        </div>;
-        return comp;
-    }
-}
 // #end
 
 // Comp: View mode link
