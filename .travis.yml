@@ -1,0 +1,28 @@
+language: node_js
+
+node_js:
+  - "node"
+  - "7"
+
+cache:
+  yarn: true
+
+# safelist
+branches:
+  only:
+    - master
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --version latest
+  - export PATH="$HOME/.yarn/bin:$PATH
+
+install:
+  - yarn install
+
+script:
+  - npm test
+
+notifications:
+  email: 
+    - phikhanh.8x@gmail.com
+   
