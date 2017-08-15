@@ -17,6 +17,8 @@ before_install:
   - export PATH="$HOME/.yarn/bin:$PATH"
 
 install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
   - yarn install
 
 script:
@@ -25,3 +27,8 @@ script:
 notifications:
   email: 
     - phikhanh.8x@gmail.com
+
+addons:
+  apt:
+    packages:
+      - xvfb
