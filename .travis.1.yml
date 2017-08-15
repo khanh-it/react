@@ -1,0 +1,34 @@
+language: node_js
+
+node_js:
+  - "7"
+
+cache:
+  yarn: true
+
+# safelist
+branches:
+  only:
+    - master
+    - travis
+
+before_install:
+  - curl -o- -L https://yarnpkg.com/install.sh | bash -s -- --nightly
+  - export PATH="$HOME/.yarn/bin:$PATH"
+
+install:
+  - export DISPLAY=':99.0'
+  - Xvfb :99 -screen 0 1024x768x24 > /dev/null 2>&1 &
+  - yarn install
+
+script:
+  - npm test
+
+notifications:
+  email: 
+    - phikhanh.8x@gmail.com
+
+addons:
+  apt:
+    packages:
+      - xvfb
